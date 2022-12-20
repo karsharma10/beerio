@@ -157,7 +157,7 @@ app.post('/breweriesbyState', async (req, res) =>{
           if (results.data.length === 0) {
             res.render('pages/searchByState', {
               error: true,
-              message: "That City Doesn't Exist In The Database, Please Check Your Spelling Or Try Another City.",
+              message: "That State Doesn't Exist In The Database, Please Check Your Spelling Or Try Another State.",
             });
           }
           else{
