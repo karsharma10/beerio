@@ -3,10 +3,10 @@
 <%- include ('../partials/message') %>
 <div class = "mainPage">
     <div class = "card">
-        <form action = "/breweries" method = "POST">
+        <form action = "/breweriesbyState" method = "POST">
             <label for="exampleInputEmail1">Please Enter A State:</label>
             <div class = "search">
-                <input type="text" class="form-control" id="citySearch" name = "citySearch" aria-describedby="emailHelp" placeholder="Type in a City">
+                <input type="text" class="form-control" id="stateSearch" name = "stateSearch" aria-describedby="emailHelp" placeholder="Type in a State">
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>

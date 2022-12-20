@@ -134,6 +134,52 @@ app.post('/breweries', async (req, res) =>{
     }
 });
 
+app.post('/breweriesbyState', async (req, res) =>{
+    //console.log(req.body.citySearch);
+    //console.log(`http://api.openbrewerydb.org/breweries?by_city=${req.body.citySearch}`);
+    if(req.body.stateSearch === ""){
+      res.render('pages/searchByState', {
+        error: true,
+        message: "Please Type In A State",
+      });
+    }
+    else{
+      axios({
+        url: `http://api.openbrewerydb.org/breweries?`,
+            method: 'GET',
+            dataType:'json',
+            headers: { Accept: "application/json", "Accept-Encoding": "identity" },
+            params: {
+                "by_state":req.body.stateSearch
+            }
+        })
+        .then(results => {
+          if (results.data.length === 0) {
+            res.render('pages/searchByState', {
+              error: true,
+              message: "That City Doesn't Exist In The Database, Please Check Your Spelling Or Try Another City.",
+            });
+          }
+          else{
+            //console.log('results', results.data); // the results will be displayed on the terminal if the docker containers are running
+            res.render("pages/searchByState", {results:results.data});
+          }
+            // Send some parameters
+
+        })
+        .catch(error => {
+        // Handle errors
+          res.render('pages/searchByState', {
+              error: true,
+              message: error,
+          });
+          //console.log(error);
+            
+        });
+
+    }
+});
+
 app.post('/addReview', async (req, res) =>{
 
   //console.log(req.body.nameBrew);
