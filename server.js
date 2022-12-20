@@ -162,7 +162,7 @@ app.post('/breweriesbyState', async (req, res) =>{
           }
           else{
             //console.log('results', results.data); // the results will be displayed on the terminal if the docker containers are running
-            res.render("pages/searchByState", {results:results.data});
+            res.render("pages/dataPage", {results:results.data});
           }
             // Send some parameters
 
