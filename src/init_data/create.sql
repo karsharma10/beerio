@@ -1,0 +1,8 @@
+-- CREATION FOR THE Reviews TABLE
+DROP TABLE IF EXISTS Reviews CASCADE;
+CREATE TABLE Reviews(
+    ReviewID SERIAL PRIMARY KEY NOT NULL,
+    brewery VARCHAR(255),
+    review VARCHAR(255),
+    review_date DATE
+);

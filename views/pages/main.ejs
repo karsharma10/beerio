@@ -1,0 +1,90 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu') %>
+<%- include ('../partials/message') %>
+<div class = "mainPage">
+    <div class = "card">
+        <form action = "/breweries" method = "POST">
+            <label for="exampleInputEmail1">Please Enter A City:</label>
+            <div class = "search">
+                <input type="text" class="form-control" id="citySearch" name = "citySearch" aria-describedby="emailHelp" placeholder="Type in a City">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+    <div class="card" style="width: 18rem; height: 12rem;">
+        <div class="card-body">
+          <h5 class="card-title">Name:</h5>
+          <% if(locals.results) { %>
+            <% if(results[0].name == null) { %>
+              <a  class="card-link">-</a>
+            <% } else { %> 
+              <a  class="card-link"><%=results[0].name%></a>
+            <% } %>    
+          <% } else { %> 
+            <a  class="card-link">Unavaible</a>
+          <% } %>    
+        </div>
+      </div>
+      <div class="card" style="width: 18rem; height: 12rem;">
+        <div class="card-body">
+          <h5 class="card-title">Type:</h5>
+          <% if(locals.results) { %>
+            <% if(results[0].brewery_type == null) { %>
+              <a  class="card-link">-</a>
+            <% } else { %> 
+              <a  class="card-link"><%= results[0].brewery_type%></a>
+            <% } %>  
+          <% } else { %> 
+            <a  class="card-link">Unavaible</a>
+          <% } %>    
+        </div>
+      </div>
+      <div class="card" style="width: 18rem; height: 12rem;">
+        <div class="card-body">
+          <h5 class="card-title">Street Address:</h5>
+          <% if(locals.results) { %>
+            <% if(results[0].street == null) { %>
+                <a  class="card-link">-</a>
+            <% } else { %> 
+            <a  class="card-link"><%= results[0].street%></a>
+            <% } %>    
+          <% } else { %> 
+            <a  class="card-link">Unavaible</a>
+          <% } %>    
+        </div>
+      </div>
+      <% if(locals.results) { %>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+          Add review
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Review For Brewery:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action = "/addReview" method = "POST">
+                  <label for="exampleInputEmail1">Name of Brewery:</label>
+                  <input type="text" class="form-control" id="citySearch" disabled="disabled" name = "nameBrew" value="<%=results[0].name%>">
+                  <input type="hidden" class="form-control" id="citySearch2" name = "nameBrew" aria-describedby="emailHelp" value="<%=results[0].name%>">
+                  <h3>&nbsp</h3>
+                  <label for="exampleInputEmail1">Type in Your Review:</label>
+                  <input type="text" class="form-control" id="citySearch" name = "addReview">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+</div>
+<%- include ('../partials/footer') %>

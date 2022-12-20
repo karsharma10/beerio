@@ -1,0 +1,30 @@
+<%- include ('../partials/header') %> 
+<%- include ('../partials/menu') %>
+<main>
+  <div class="container">
+    <!-- THE REST OF YOUR HTML CODE GOES HERE -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style = "color: red;">Brewery Name</th>
+          <th scope="col" style = "color: red;">Review</th>
+          <th scope="col" style = "color: red;">Date</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(item => { %>
+          <tr>
+            <td style = "color: black;"><%= item.brewery %></td>
+            <td style = "color: black;"><%= item.review %></td>
+            <td style = "color: black;"><%= item.review_date %></td>
+          </tr>
+          
+        <% }) %>
+        
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<%- include ('../partials/footer') %>
