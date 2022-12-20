@@ -82,6 +82,9 @@ app.get('/review', (req, res) =>{
 app.get('/main', (req, res) =>{
     res.render('pages/main'); //this will call the /anotherRoute route in the API
 });
+app.get('/searchByState', (req, res) =>{
+    res.render('pages/searchByState'); //this will call the /anotherRoute route in the API
+});
 app.get('/brewSearch', (req, res) =>{
     res.render('pages/brewSearch'); //this will call the /anotherRoute route in the API
 });
